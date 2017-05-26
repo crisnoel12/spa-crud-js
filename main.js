@@ -72,10 +72,9 @@ function deleteUser(id) {
         if (user.id == id && action != false) {
             users.splice(i ,1);
             $('#userTable #user-' + user.id).remove();
-            
+            flashMessage(msg);
         }
     });
-    flashMessage(msg);
 }
 
 function updateUser(id) {
