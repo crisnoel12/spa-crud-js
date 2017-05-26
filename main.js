@@ -13,20 +13,8 @@ var users = [
     }
 ];
 
-$.each(users, function(i){
-    $('#userTable > tbody:last-child').append(`
-        <tr id="user-${users[i].id}">
-            <td class="userData" name="name">${users[i].name}</td> 
-            <td class="userData" name="address">${users[i].address}</td> 
-            <td id="tdAge" class="userData" name="age">${users[i].age}</td> 
-            <td align="center">
-                <button class="btn btn-success form-control" onClick="editUser(${users[i].id})" data-toggle="modal" data-target="#myModal")">Edit</button>
-            </td>
-            <td>
-                <button class="btn btn-danger form-control" onClick="deleteUser(${users[i].id})">Delete</button>
-            </td>
-        </tr>
-    `);
+$.each(users, function(i, user){
+    appendToUsrTable(user);
 });
 
 $( "form" ).submit(function( e ) {
@@ -53,20 +41,7 @@ $( "form#addUser" ).submit(function() {
 
 function addUser(user) {
     users.push(user);
-
-    $('#userTable > tbody:last-child').append(`
-        <tr id="user-${user.id}">
-            <td class="userData" name="name">${user.name}</td>
-            '<td class="userData" name="address">${user.address}</td>
-            '<td id="tdAge" class="userData" name="age">${user.age}</td>
-            '<td align="center">
-                <button class="btn btn-success form-control" onClick="editUser(${user.id})" data-toggle="modal" data-target="#myModal")">Edit</button>
-            </td>
-            <td>
-                <button class="btn btn-danger form-control" onClick="deleteUser(${user.id})">Delete</button>
-            </td>
-        </tr>
-    `);
+    appendToUsrTable(user);
 }
 
 function editUser(id) {
@@ -142,5 +117,21 @@ function flashMessage(msg) {
     $('.flashMsg').remove();
     $('.row').prepend(`
         <div class="col-sm-12"><div class="flashMsg alert alert-success alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>${msg}</strong></div></div>
+    `);
+}
+
+function appendToUsrTable(user) {
+    $('#userTable > tbody:last-child').append(`
+        <tr id="user-${user.id}">
+            <td class="userData" name="name">${user.name}</td>
+            '<td class="userData" name="address">${user.address}</td>
+            '<td id="tdAge" class="userData" name="age">${user.age}</td>
+            '<td align="center">
+                <button class="btn btn-success form-control" onClick="editUser(${user.id})" data-toggle="modal" data-target="#myModal")">Edit</button>
+            </td>
+            <td>
+                <button class="btn btn-danger form-control" onClick="deleteUser(${user.id})">Delete</button>
+            </td>
+        </tr>
     `);
 }
