@@ -128,7 +128,7 @@ function appendToUsrTable(user) {
             '<td align="center">
                 <button class="btn btn-success form-control" onClick="editUser(${user.id})" data-toggle="modal" data-target="#myModal")">Edit</button>
             </td>
-            <td>
+            <td align="center">
                 <button class="btn btn-danger form-control" onClick="deleteUser(${user.id})">Delete</button>
             </td>
         </tr>
